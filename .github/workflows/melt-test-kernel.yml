@@ -128,8 +128,8 @@ jobs:
           ls
           # Initialize and sync kernel source
           echo "Initializing and syncing kernel source..."
-          git clone --depth=1 --u https://github.com/Pzqqt/android_kernel_xiaomi_marble/ -b melt-rebase $CONFIG
-  
+          git clone --depth=1 https://github.com/Pzqqt/android_kernel_xiaomi_marble.git -b melt-rebase $CONFIG
+
 
       - name: Determine the branch for kernelsu
         if: ${{ inputs.kernelsu_variant == 'Official' }}
