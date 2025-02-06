@@ -124,7 +124,7 @@ jobs:
       - name: Initialize and Sync Kernel Source
         run: |
           echo "Creating folder for configuration: $CONFIG..."
-          mkdir -p 
+          mkdir -p $CONFIG
           
           # Initialize and sync kernel source
           echo "Initializing and syncing kernel source..."
