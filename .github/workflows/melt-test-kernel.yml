@@ -125,10 +125,10 @@ jobs:
         run: |
           echo "Creating folder for configuration: $CONFIG..."
           mkdir -p $CONFIG
-          
+          ls
           # Initialize and sync kernel source
           echo "Initializing and syncing kernel source..."
-          git clone --depth=1 --u https://github.com/Pzqqt/android_kernel_xiaomi_marble/ -b melt-rebase ./$CONFIG
+          git clone --depth=1 --u https://github.com/Pzqqt/android_kernel_xiaomi_marble/ -b melt-rebase $CONFIG
   
 
       - name: Determine the branch for kernelsu
