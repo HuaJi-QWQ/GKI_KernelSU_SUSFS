@@ -170,11 +170,10 @@ jobs:
       - name: 初始化和同步内核源代码
         run: |
           echo "Creating folder for configuration: $CONFIG..."
-          mkdir -p "$CONFIG"
-          cd "$CONFIG"
+          git clone https://github.com/ztc1997/android_gki_kernel_5.10_common -b android12-5.10-2025-06 $CONFIG
+          ls
+          ls $CONFIG
 
-          # Initialize and sync kernel source
-          echo "Initializing and syncing kernel source..."
           FORMATTED_BRANCH="${{ inputs.android_version }}-${{ inputs.kernel_version }}-${{ inputs.os_patch_level }}"
           REMOTE_BRANCH=$(git ls-remote https://android.googlesource.com/kernel/common ${FORMATTED_BRANCH})
           DEFAULT_MANIFEST_PATH=.repo/manifests/default.xml
@@ -183,13 +182,8 @@ jobs:
             echo "Found deprecated branch: $FORMATTED_BRANCH"
             sed -i "s/\"${FORMATTED_BRANCH}\"/\"deprecated\/${FORMATTED_BRANCH}\"/g" $DEFAULT_MANIFEST_PATH
           fi
-          # Sync repo and apply patches
-          git clone https://github.com/ztc1997/android_gki_kernel_5.10_common -b android12-5.10-2025-06 
 
           echo "REMOTE_BRANCH=$REMOTE_BRANCH" >> $GITHUB_ENV
-          ls
-          cd android_gki_kernel_5.10_common
-          ls
           FORMATTED_BRANCH="${{ inputs.android_version }}-${{ inputs.kernel_version }}"
       
       - name: 确定 KernelSU 的分支
